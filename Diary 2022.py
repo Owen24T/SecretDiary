@@ -1,6 +1,11 @@
+from os import getcwd
 from tkinter import *
 import datetime
 import threading
+
+
+PATH = "AppData\DiaryLogs.txt"
+print(getcwd())
 
 def myFun():
     result = myEntry1.get()
@@ -26,7 +31,7 @@ def myFun():
 
 
 def addEntry(text):
-    f = open("Personal Coding Projects\Diary\Diary 2022.txt", "a")
+    f = open(PATH, "a")
     d = datetime.datetime.now()
 
     if text.startswith("YESTERDAY: "):
@@ -52,7 +57,7 @@ def addEntry(text):
 
 def count_entries(date_str):
     counter = 0
-    f = open("Personal Coding Projects\Diary\Diary 2022.txt", "r")
+    f = open(PATH, "r")
     entry_list = f.readlines()
     for entry in entry_list:
         if entry.startswith(date_str):
@@ -62,7 +67,7 @@ def count_entries(date_str):
     
 
 def getLastEntry():
-    f = open("Personal Coding Projects\Diary\Diary 2022.txt", "r")
+    f = open(PATH, "r")
     entry_list = f.readlines()
     last_str = entry_list[-1]
     position = last_str.find(": ")
